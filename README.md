@@ -18,19 +18,17 @@ The submit button currently uses the default styling.
 **File to modify:** `components/contact-form.tsx`
 
  
-## Task 3: Add Phone Number Field 
+## Task 3: Add Name Field 
 
-The contact form currently only has Name, Email, and Message fields.
+The contact form currently only has Email and Message fields.
 
-**Objective:** Add a new field for phone number input.
+**Objective:** Add a new field for name input.
 
 **Requirements:**
-- Add a "Phone" field between the Email and Message fields
+- Add a "Name" field before the Email field
 - Implement validation:
-  - Phone number should be required
-  - Must be numeric characters only
-  - Must be more than 10 characters
-  - Must be less than 14 characters
+  - Name should be required
+  - Must be at least 2 characters
   - Display appropriate error messages
 
 **File to modify:** `components/contact-form.tsx`
