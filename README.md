@@ -51,12 +51,8 @@ The form currently only logs data to the console. You need to implement proper A
 **On Success:**
 Parse the response and show a success toast with the returned data:
 ```typescript
-const responseData = await response.json()
+ toast.success(responseData.message);
 
-toast({
-  title: "Success!",
-  description: responseData.message,
-})
 ```
 
 **On Error:**
