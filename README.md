@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+ 
 
-First, run the development server:
+## Task 1: Fix the Runtime Error 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+There is a runtime error in the contact form that prevents it from working correctly. 
+
+**Objective:** Identify and fix the error in the `components/contact-form.tsx` file.
+
+  
+
+## Task 2: Change Submit Button Color 
+
+The submit button currently uses the default styling.
+
+**Objective:** Change the submit button color to **purple** in normal and hover states.
+
+**File to modify:** `components/contact-form.tsx`
+
+ 
+## Task 3: Add Phone Number Field 
+
+The contact form currently only has Name, Email, and Message fields.
+
+**Objective:** Add a new field for phone number input.
+
+**Requirements:**
+- Add a "Phone" field between the Email and Message fields
+- Implement validation:
+  - Phone number should be required
+  - Must be numeric characters only
+  - Must be more than 10 characters
+  - Must be less than 14 characters
+  - Display appropriate error messages
+
+**File to modify:** `components/contact-form.tsx`
+
+ 
+## Task 4: Implement Form Submission
+
+The form currently only logs data to the console. You need to implement proper API submission with error handling.
+
+**Objective:** Submit the form data to the `/api/contact` endpoint and handle responses appropriately.
+
+**Requirements:**
+- Make a POST request to `/api/contact` with the form data
+- Use the `setIsSubmitting` state to manage loading state
+- Parse the JSON response from the API
+- Handle both success and error cases
+- Reset the form on successful submission
+- Always reset the loading state in a finally block
+
+**On Success:**
+Parse the response and show a success toast with the returned data:
+```typescript
+const responseData = await response.json()
+
+toast({
+  title: "Success!",
+  description: responseData.message,
+})
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**On Error:**
+Show an error toast with the error message:
+```typescript
+  toast.error("Something went wrong!" + error.message);
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**File to modify:** `components/contact-form.tsx`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+ 
 
-To learn more about Next.js, take a look at the following resources:
+## Task 5 (Bonus): Replace Route Handler with Server Action
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+ Refactor the implementation to use Next.js Server Actions instead of the route handler.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
