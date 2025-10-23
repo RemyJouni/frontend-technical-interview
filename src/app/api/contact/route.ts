@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
     console.log("Contact form submission:", {
       name: body.name,
       email: body.email,
-      phone: body.phone,
       message: body.message,
     });
 
