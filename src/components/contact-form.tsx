@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
+import { submitContactFormAction} from "@/actions/contact";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, {
@@ -46,20 +47,13 @@ export function ContactForm() {
   async function onSubmit(formData: ContactFormValues) {
     try {
       setIsSubmitting(true);
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const result = await submitContactFormAction(formData);
 
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error);
+      if (!result.success) {
+        throw new Error(result.message);
       }
-      const data = await response.json();
-      toast.success(data.message);
+      
+      toast.success(result.message);
       form.reset();
     } catch (error: any) {
       toast.error(error.message);
